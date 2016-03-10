@@ -1,7 +1,6 @@
 githubUserSearch.controller('GithubUserSearchController', ['$resource', function($resource) {
-  var self = this;
-
   var searchResource = $resource('https://api.github.com/search/users');
+  var self = this;
 
   self.doSearch = function(){
     self.searchResult = searchResource.get(
