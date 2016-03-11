@@ -14,6 +14,11 @@ describe('GithubUserSearchController', function() {
 
   describe('when searching for a user', function() {
 
+    afterEach(function() {
+      httpBackend.verifyNoOutstandingExpectation();
+      httpBackend.verifyNoOutstandingExpectation();
+    });
+
     var items = [
       {
         "login":"sarah crawley",
@@ -31,9 +36,9 @@ describe('GithubUserSearchController', function() {
     beforeEach(inject(function($httpBackend){
       httpBackend = $httpBackend;
       httpBackend
-      .when("GET", "https://api.github.com/search/users?q=hello")
+      .expectGET("https://api.github.com/search/users?q=hello")
       .respond(
-        {item: items}
+        {items: items}
       );
     }));
 
